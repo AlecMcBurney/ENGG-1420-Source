@@ -15,6 +15,7 @@ public class Week1Lab {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        System.out.println("Something is definitely happening.");
     }
     
 }
