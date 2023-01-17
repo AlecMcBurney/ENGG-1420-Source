@@ -10,7 +10,7 @@ public class Assignment2Part2 {
 
     public static void main(String[] args) {
 
-        // Initialze a variable to track number of factors, starting number and possible factors.
+        // Initialze a variable to track number of factors, starting number and number of possible factors.
         int factor, count, divisor, remainder;
 
         // Cycle through numbers 1 through 10000.
