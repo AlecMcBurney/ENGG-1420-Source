@@ -14,7 +14,7 @@ public class Assignment2Part1 {
         // Initialze a variable to track number of factors, starting number and possible factors.
         int factor, count, divisor;
 
-        //Start the count at 1.
+        // Start the count at 1.
         count = 1;
 
         // Cycle through numbers 1 through 10000.
@@ -27,7 +27,7 @@ public class Assignment2Part1 {
             divisor = count - 1;
             while (divisor > 1) {
 
-                //If there is a factor other than the number and one, count it to factor.
+                // If there is a factor other than the number and one, count it to factor.
                 if (count % divisor == 0) {
                     factor++;
                 }
