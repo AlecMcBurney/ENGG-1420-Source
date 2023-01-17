@@ -29,11 +29,12 @@ public class Assignment2Part2 {
                         factor++;
                 }
             }
-            
+
             // If there are factors other than the number and one print the prime number.
             switch (factor) {
-            case 0: System.out.println(count);
+                case 0:
+                    System.out.println(count);
+            }
         }
     }
-}
 }
