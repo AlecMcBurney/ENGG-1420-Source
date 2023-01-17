@@ -24,7 +24,7 @@ public class Assignment2Part3b {
         x = 5;
         y = 8;
 
-        //Prints certain characters depending on the combined values of x and y.
+        // Prints certain characters depending on the values of x and y.
         if (x == 5) {
             if (y == 8) {
                 System.out.println("@@@@@");
