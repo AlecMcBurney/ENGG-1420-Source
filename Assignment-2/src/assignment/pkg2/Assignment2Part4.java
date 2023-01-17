@@ -27,8 +27,7 @@ public class Assignment2Part4 {
         while (num != 0) {
 
             // Ask for the first number to be added
-            numS = JOptionPane.showInputDialog("Enter a number to be summed." , "Enter 0 to exit");
-            
+            numS = JOptionPane.showInputDialog(null, "Enter number to be summed.\nEnter 0 to exit.", "Number summation", JOptionPane.QUESTION_MESSAGE);
             // Parses the number string into an integer
             num = Integer.parseInt(numS);
 
