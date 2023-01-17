@@ -1,7 +1,7 @@
 /**
  * Mackenzie Alec McBurney
  * 2023/01/16
- * Assignment 2 part 3a
+ * Assignment 2 part 3c
  * Consider the following code snippet (code indentation has been intentionally removed):
  * if ( y == 8 )
  * if ( x == 5 )
