@@ -1,9 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package assignment.pkg2;
-
 /**
  * Mackenzie Alec McBurney
  * 2023/01/16
@@ -17,27 +11,30 @@ package assignment.pkg2;
  * System.out.println( "$$$$$" );
  * System.out.println( "&&&&&" );
  * a. Modify the above code so that its output for x = 5 and y = 8 is as follows:
- * @@@@@
- * $$$$$
+ * @@@@@ 
+ * $$$$$ 
  * &&&&&
  */
+package assignment.pkg2;
+
 public class Assignment2Part3a {
+
     public static void main(String[] args) {
-        
+
         // Initialization and declaration of variables x and y.
-        int x,y;
+        int x, y;
         x = 5;
         y = 8;
-        
+
         //Prints certain characters depending on the combined values of x and y.
-        if(x ==5){
-            if(y == 8){
-            System.out.println( "@@@@@" );
-            }else{
-            System.out.println( "#####" );
+        if (x == 5) {
+            if (y == 8) {
+                System.out.println("@@@@@");
+            } else {
+                System.out.println("#####");
             }
-            System.out.println( "$$$$$" );
-            System.out.println( "&&&&&" );
+            System.out.println("$$$$$");
+            System.out.println("&&&&&");
         }
     }
 }
