@@ -27,6 +27,7 @@ public class Assignment2Part2 {
                 switch (remainder) {
                     case 0:
                         factor++;
+                        break;
                 }
             }
 
@@ -34,6 +35,7 @@ public class Assignment2Part2 {
             switch (factor) {
                 case 0:
                     System.out.println(count);
+                    break;
             }
         }
     }
