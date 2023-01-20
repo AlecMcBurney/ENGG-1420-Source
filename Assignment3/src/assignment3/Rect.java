@@ -19,6 +19,7 @@
 package assignment3;
 
 import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
+import javafx.geometry.Side;
 import sun.net.www.content.audio.x_aiff;
 
 /**
@@ -27,9 +28,10 @@ import sun.net.www.content.audio.x_aiff;
  */
 public class Rect {
 
-    int width, length;
-    int x, y;
-
+    int width, length, x, y, chord[], side[], perimeter;
+    long area;
+    
+    //A method that calculates the perimeter of a rectangle given the side lengths.
     int getPerimeter() {
         int perimeter, n;
         perimeter = 2 * width + 2 * length;
@@ -37,32 +39,50 @@ public class Rect {
     }
 
     long getArea() {
-        double area;
+        long area;
         area = width * length;
         return area;
     }
 
-    int move() {
-        int x, y;
-        x = 2;
-        y = 4;
+    int[] move() {
+        int chord[] = {2, 4};
+        return chord;
     }
-    
-     int changeSize (int n) {
-        width = n;
-        length = n;
+
+    int[] changeSize(int n) {
+        int dimension[] = {n, n};
+        return dimension;
     }
-     
+
     void print() {
-        System.out.println("Here is information about your rectangle.\nCoordinates: " + "\nlength: " + "\nwidth: " + "\ncircumference: " + "\narea: ");
+        System.out.println("Here is information about your rectangle.\nCoordinates: (" + x + "," + y + ")\nlength: " + length + "\nwidth: " + width + "\ncircumference: " + perimeter + "\narea: " + area);
     }
-   
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        double Width, Length, x, y;
-
+        
+        Rect re = new Rect(); 
+        re.length = 13;
+        re.width = 4;
+        re.x = 0;
+        re.y = 0;
+        
+        re.perimeter = re.getPerimeter();
+        
+        re.area = re.getArea();
+        
+        re.chord = re.move();
+        
+        re.side = re.changeSize(14);
+        
+        re.x = re.side[0];
+        re.y = re.side[1];
+        
+        re.print();
+        
+        
     }
 
 }
