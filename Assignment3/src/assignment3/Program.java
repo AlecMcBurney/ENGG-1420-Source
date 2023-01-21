@@ -1,6 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Mackenzie Alec McBurney
+ * 2023/01/21
+ * Assignment 3 part 2
+ * Implement a Program class and create an objects of type Rect inside its main method and use its
+ * various methods.
  */
 package assignment3;
 
