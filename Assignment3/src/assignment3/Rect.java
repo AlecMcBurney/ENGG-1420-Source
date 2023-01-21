@@ -1,6 +1,6 @@
 /**
  * Mackenzie Alec McBurney
- * 2023/01/
+ * 2023/01/21
  * Assignment 3 Part 1
  * Implement a Rect class for the concept of rectangle. Each rectangle has the following properties:
  *      ● Coordinates of the left and top corner of the rectangle (including X and Y)
