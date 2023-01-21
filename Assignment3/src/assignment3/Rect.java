@@ -55,33 +55,13 @@ public class Rect {
     }
 
     void print() {
-        System.out.println("Here is information about your rectangle.\nCoordinates: (" + x + "," + y + ")\nlength: " + length + "\nwidth: " + width + "\ncircumference: " + perimeter + "\narea: " + area);
+        System.out.println("Here is information about your rectangle.\nCoordinates: (" + x + "," + y + ")\nLength: " + length + "\nWidth: " + width + "\nPerimeter: " + perimeter + "\nArea: " + area);
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Rect re = new Rect(); 
-        re.length = 13;
-        re.width = 4;
-        re.x = 0;
-        re.y = 0;
-        
-        re.perimeter = re.getPerimeter();
-        
-        re.area = re.getArea();
-        
-        re.chord = re.move();
-        
-        re.side = re.changeSize(14);
-        
-        re.x = re.side[0];
-        re.y = re.side[1];
-        
-        re.print();
-        
         
     }
 
