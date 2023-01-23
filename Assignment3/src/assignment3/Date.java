@@ -26,63 +26,56 @@ public class Date {
     int[] addDays(int add, int date[]) {
         date[2] += add;
 
-        if (date[1] == 1
-                || date[1] == 3
-                || date[1] == 5
-                || date[1] == 7
-                || date[1] == 8
-                || date[1] == 10
-                || date[1] == 12) {
-
+        //Checks if entered the month has 31 days.
+        if (date[1] == 1 // January.
+                || date[1] == 3 // March
+                || date[1] == 5 // May
+                || date[1] == 7 // July
+                || date[1] == 8 // August
+                || date[1] == 10 // October
+                || date[1] == 12) { // December
             if (date[2] > 31) {
-                date[1] += 1;
                 while (date[2] > 31) {
+                    date[1] += 1;
                     date[2] = date[2] - 31;
                 }
             }
-        } else if (date[1] == 4
+        } // Checks if the entered month has 30 days.
+        else if (date[1] == 4
                 || date[1] == 6
                 || date[1] == 9
                 || date[1] == 11) {
-
             if (date[2] > 30) {
-                date[1] += 1;
                 while (date[2] > 30) {
+                    date[1] += 1;
                     date[2] = date[2] - 30;
                 }
             }
-
-        } else if (date[1] == 2) {
-            if (date[0] % 4 == 0) {
-
-                if (date[2] > 29) {
+        } // Checks if the entered month has 28 days.
+        else if (date[1] == 2) {
+            if (date[2] > 28) {
+                while (date[2] > 28) {
                     date[1] += 1;
-                    while (date[2] > 29) {
-                        date[2] = date[2] - 29;
-                    }
-                }
-            } else {
-                if (date[2] > 28) {
-                    date[1] += 1;
-                    while (date[2] > 28) {
-                        date[2] = date[2] - 28;
-                    }
+                    date[2] = date[2] - 28;
                 }
             }
-            return date;
         } else {
             System.out.println("Error: that is not a correct month number.");
         }
+        if (date[1] > 12) {
+            date[0]++;
+            date[1] = 1;
+            date[2] = 1;
+        }
+        return date;
+    }
 
-        Date compare(){
-            
+    Date compare() {
+
     }
 }
-    
 
-    
-
-    public static void main(String args) {
+public static void main(String args) {
 
     }
 
