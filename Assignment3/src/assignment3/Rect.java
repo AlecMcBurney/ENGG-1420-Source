@@ -14,7 +14,23 @@
  *      d. changeSize, which takes a parameter n of type int and set the length and width of the
  *          rectangle to n.
  *      e. print, that prints the information of the rectangle including its coordinates, length, width,
- *          circumference, and area.
+ *          circumference/perimeter, and area.
+ * 
+ * Assignment 3 part 5
+ * 5. Consider the Rect class you defined in the Assignment#3, then modify its implementation based on the
+ * following conditions:
+ *      a. Add appropriate access modifiers to the class members
+ *      b. There are only two ways to create an object of type Rect:
+ *          • By giving the length and width of the rectangle
+ *          • By giving the length, width and coordinates of the rectangle
+ *      c. Add the required controls so that the length and width of the rectangle are always integers
+ *          greater than 0. If the value of length or width is given a negative number, the absolute value
+ *          of that number is considered, and if the value of length or width is given 0, it is considered
+ *          1 instead of 0.
+ *      d. Define isBiggerThan method in this class that takes an object of type Rect as a parameter
+ *          and compares it with the current rectangle (i.e., the object on which the isBiggerThan
+ *          method is called), and if the area of the current object is larger than the area of the
+ *          parameter object, return true and otherwise return false.
  */
 package assignment3;
 
@@ -34,6 +50,13 @@ public class Rect {
     private int x, y, chord[]; // Holds the x and y coordinates and chord holds both to be passed to other methods.
     private int perimeter; // Holds the perimeter value of the inputted rectangle.
     private long area; // Holds the area value of the inputted rectangle.
+
+    public Rect(int width, int length) {
+        this.x = 0;
+        this.y = 0;
+        setWidth(width);
+        setLength(length);
+    }
 
     public Rect(int x, int y, int width, int length) {
         setX(x);
@@ -84,7 +107,14 @@ public class Rect {
         System.out.println("\nHere is information about your rectangle.\nCoordinates: (" + this.x + "," + this.y + ")\nChanged length: "
                 + this.length + "\nChanged width: " + this.width + "\nPerimeter: " + this.perimeter + "\nArea: " + this.area);
     }
-
+    
+    public boolean isBiggerThan(long otherArea){
+        boolean bigger = false;
+        if(this.area > otherArea){
+            bigger = true;
+        }
+        return bigger;
+    }
     /**
      * Mutator for the var width.
      */
