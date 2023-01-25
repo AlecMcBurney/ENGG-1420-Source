@@ -15,7 +15,7 @@
  *          rectangle to n.
  *      e. print, that prints the information of the rectangle including its coordinates, length, width,
  *          circumference/perimeter, and area.
- * 
+ *
  * Assignment 3 part 5
  * 5. Consider the Rect class you defined in the Assignment#3, then modify its implementation based on the
  * following conditions:
@@ -46,11 +46,17 @@ import sun.net.www.content.audio.x_aiff;
 public class Rect {
 
     // Initializing variables
-    private int width, length, side[]; // Holds the length and width and side holds both to be passed to other methods.
-    private int x, y, chord[]; // Holds the x and y coordinates and chord holds both to be passed to other methods.
+    private int width, length; // Holds the length and width and side holds both to be passed to other methods.
+    private int x, y; // Holds the x and y coordinates and chord holds both to be passed to other methods.
     private int perimeter; // Holds the perimeter value of the inputted rectangle.
     private long area; // Holds the area value of the inputted rectangle.
 
+    /**
+     * Primary constructor with set coordinates and modifiable sides.
+     *
+     * @param width
+     * @param length
+     */
     public Rect(int width, int length) {
         this.x = 0;
         this.y = 0;
@@ -58,16 +64,23 @@ public class Rect {
         setLength(length);
     }
 
+    /**
+     * Secondary constructor with modifiable sides and coordinates.
+     *
+     * @param x
+     * @param y
+     * @param width
+     * @param length
+     */
     public Rect(int x, int y, int width, int length) {
+        this(width, length);
+
         setX(x);
         setY(y);
-        setWidth(width);
-        setLength(length);
     }
 
     /**
-     * A method that calculates the perimeter of a rectangle given the side
-     * lengths.
+     * A method which calculates and returns the perimeter of a rectangle.
      */
     public int getPerimeter() {
         this.perimeter = 2 * this.width + 2 * this.length;
@@ -75,7 +88,7 @@ public class Rect {
     }
 
     /**
-     * A method that calculates the area of a rectangle given the side lengths.
+     * A method which calculates and returns the area of a rectangle.
      */
     public long getArea() {
         this.area = this.width * this.length;
@@ -83,8 +96,11 @@ public class Rect {
     }
 
     /**
-     * A method that changes the coordinate of the top left corner of a
-     * rectangle.
+     * A method that receives two parameters x and y of type int and changes the
+     * position of the rectangle.
+     *
+     * @param x
+     * @param y
      */
     public void move(int x, int y) {
         this.x = x;
@@ -92,8 +108,10 @@ public class Rect {
     }
 
     /**
-     * A method that changes both the length and width of a rectangle to the
-     * value n.
+     * A method which takes a parameter n of type int and set the length and
+     * width of the rectangle to n.
+     *
+     * @param n
      */
     public void changeSize(int n) {
         this.length = n;
@@ -101,34 +119,58 @@ public class Rect {
     }
 
     /**
-     * A method that prints out information about the rectangle.
+     * A method that prints the information of the rectangle including its
+     * coordinates, length, width, circumference/perimeter, and area.
      */
     public void print() {
-        System.out.println("\nHere is information about your rectangle.\nCoordinates: (" + this.x + "," + this.y + ")\nChanged length: "
+        System.out.println("Here is information about your rectangle.\nCoordinates: (" + this.x + "," + this.y + ")\nChanged length: "
                 + this.length + "\nChanged width: " + this.width + "\nPerimeter: " + this.perimeter + "\nArea: " + this.area);
     }
-    
-    public boolean isBiggerThan(long otherArea){
+
+    /**
+     * A method that takes an object of type Rect as a parameter and compares it
+     * with the current rectangle. If the area of the current object is larger
+     * than the area of the parameter object, return true and otherwise return
+     * false.
+     */
+    public boolean isBiggerThan(long otherArea) {
         boolean bigger = false;
-        if(this.area > otherArea){
+        if (this.area > otherArea) {
             bigger = true;
         }
         return bigger;
     }
+
     /**
      * Mutator for the var width.
      */
     public void setWidth(int width) {
-        /* boolean success = false;
+        // Check for 0 value and change to 1.
+        if (width == 0) {
+            width = 1;
+        } else {
+            // Make sure final value is a positive int incase a negative int.
+            this.width = Math.abs(width);
+        }
+    }
+
+    /**
+     * A mutator that prompts the user to chose var width.
+     */
+    public void userSetWidth() {
+        boolean success = false;
+        String widthS;
+        int width = 0;
         while (!success) {
             try {
                 // Prompt user for a width value.
-                width = JOptionPane.showConfirmDialog(null, "Enter width:");
+                widthS = JOptionPane.showInputDialog(null, "Enter width:");
+                width = Integer.parseInt(widthS);
                 success = true;
             } catch (Exception e) {
                 System.out.println("Please enter a valid input.");
             }
-        } */
+        }
         // Check for 0 value and change to 1.
         if (width == 0) {
             width = 1;
@@ -142,16 +184,6 @@ public class Rect {
      * Mutator for the var length.
      */
     public void setLength(int length) {
-        /* boolean success = false;
-        while (!success) {
-            try {
-                // Prompt user for a length value.
-                length = JOptionPane.showConfirmDialog(null, "Enter length:");
-                success = true;
-            } catch (Exception e) {
-                System.out.println("Please enter a valid input");
-            }
-        } */
         // Check for 0 value and change to 1.
         if (length == 0) {
             length = 1;
@@ -162,31 +194,71 @@ public class Rect {
     }
 
     /**
-     * Mutator for var x.
+     * A mutator that prompts the user to chose var length.
      */
-    public void setX(int x) {
-        /* boolean success = false;
+    public void userSetLength() {
+        boolean success = false;
+        String lengthS;
+        int length = 0;
         while (!success) {
             try {
-                x = JOptionPane.showConfirmDialog(null, "X coordinate");
+                // Prompt user for a length value.
+                lengthS = JOptionPane.showInputDialog(null, "Enter length:");
+                length = Integer.parseInt(lengthS);
+                success = true;
             } catch (Exception e) {
                 System.out.println("Please enter a valid input");
             }
-        } */
+        }
+        // Check for 0 value and change to 1.
+        if ( length == 0) {
+            length = 1;
+        } else {
+            //Make sure final value is a positive int incase a negative int.
+            this.length = Math.abs(length);
+        }
+    }
+    
+    public void setX(int x){
+        this.x = x;
+    }
+    
+    public void setY(int y){
+        this.y = y;
+    }
+    
+    /**
+     * A mutator that prompts the user to chose var x.
+     */
+    public void userSetX() {
+        boolean success = false;
+        String xString;
+        int x;
+        while (!success) {
+            try {
+                xString = JOptionPane.showInputDialog(null, "X coordinate");
+                x = Integer.parseInt(xString);
+            } catch (Exception e) {
+                System.out.println("Please enter a valid input");
+            }
+        }
     }
 
     /**
-     * Mutator for the var y.
+     * A mutator that prompts the user to chose var y.
      */
-    public void setY(int y) {
-        /* boolean success = false;
+    public void userSetY() {
+        boolean success = false;
+        String yString;
+        int y;
         while (!success) {
             try {
-                y = JOptionPane.showConfirmDialog(null, "Y coordinate");
+                yString = JOptionPane.showInputDialog(null, "Y coordinate");
+                y = Integer.parseInt(yString);
             } catch (Exception e) {
                 System.out.println("Please enter a valid input");
             }
-        } */
+        }
     }
 
     /**
