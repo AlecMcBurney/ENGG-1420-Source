@@ -20,6 +20,7 @@ package assignment3;
 
 import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
 import javafx.geometry.Side;
+import javax.swing.JOptionPane;
 import sun.net.www.content.audio.x_aiff;
 
 /**
@@ -27,59 +28,164 @@ import sun.net.www.content.audio.x_aiff;
  * @author kyure
  */
 public class Rect {
-    
+
     // Initializing variables
-    int width, length, side[]; // Holds the length and width and side holds both to be passed to other methods.
-    int x, y, chord[]; // Holds the x and y coordinates and chord holds both to be passed to other methods.
-    int perimeter; // Holds the perimeter value of the inputted rectangle.
-    long area; // Holds the area value of the inputted rectangle.
-    
-    /**
-     *A method that calculates the perimeter of a rectangle given the side lengths.
-     */
-    int getPerimeter() {
-        int perimeter;
-        perimeter = 2 * width + 2 * length;
-        return perimeter;
+    private int width, length, side[]; // Holds the length and width and side holds both to be passed to other methods.
+    private int x, y, chord[]; // Holds the x and y coordinates and chord holds both to be passed to other methods.
+    private int perimeter; // Holds the perimeter value of the inputted rectangle.
+    private long area; // Holds the area value of the inputted rectangle.
+
+    public Rect(int x, int y, int width, int length) {
+        setX(x);
+        setY(y);
+        setWidth(width);
+        setLength(length);
     }
-    
+
+    /**
+     * A method that calculates the perimeter of a rectangle given the side
+     * lengths.
+     */
+    public int getPerimeter() {
+        this.perimeter = 2 * this.width + 2 * this.length;
+        return this.perimeter;
+    }
+
     /**
      * A method that calculates the area of a rectangle given the side lengths.
      */
-    long getArea() {
-        long area;
-        area = width * length;
-        return area;
+    public long getArea() {
+        this.area = this.width * this.length;
+        return this.area;
     }
-    
+
     /**
-     * A method that changes the coordinate of the top left corner of a rectangle.
+     * A method that changes the coordinate of the top left corner of a
+     * rectangle.
      */
-    int[] move (int x, int y) {
-        int chord[] = {x, y};
-        return chord;
+    public void move(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
-    
+
     /**
-     * A method that changes both the length and width of a rectangle to the value n.
+     * A method that changes both the length and width of a rectangle to the
+     * value n.
      */
-    int[] changeSize(int n) {
-        int dimension[] = {n, n};
-        return dimension;
+    public void changeSize(int n) {
+        this.length = n;
+        this.width = n;
     }
-    
+
     /**
      * A method that prints out information about the rectangle.
      */
-    void print() {
-        System.out.println("Here is information about your rectangle.\nCoordinates: (" + x + "," + y + ")\nChanged length: " + length + "\nChanged width: " + width + "\nPerimeter: " + perimeter + "\nArea: " + area);
+    public void print() {
+        System.out.println("\nHere is information about your rectangle.\nCoordinates: (" + this.x + "," + this.y + ")\nChanged length: "
+                + this.length + "\nChanged width: " + this.width + "\nPerimeter: " + this.perimeter + "\nArea: " + this.area);
+    }
+
+    /**
+     * Mutator for the var width.
+     */
+    public void setWidth(int width) {
+        /* boolean success = false;
+        while (!success) {
+            try {
+                // Prompt user for a width value.
+                width = JOptionPane.showConfirmDialog(null, "Enter width:");
+                success = true;
+            } catch (Exception e) {
+                System.out.println("Please enter a valid input.");
+            }
+        } */
+        // Check for 0 value and change to 1.
+        if (width == 0) {
+            width = 1;
+        } else {
+            // Make sure final value is a positive int incase a negative int.
+            this.width = Math.abs(width);
+        }
+    }
+
+    /**
+     * Mutator for the var length.
+     */
+    public void setLength(int length) {
+        /* boolean success = false;
+        while (!success) {
+            try {
+                // Prompt user for a length value.
+                length = JOptionPane.showConfirmDialog(null, "Enter length:");
+                success = true;
+            } catch (Exception e) {
+                System.out.println("Please enter a valid input");
+            }
+        } */
+        // Check for 0 value and change to 1.
+        if (length == 0) {
+            length = 1;
+        } else {
+            //Make sure final value is a positive int incase a negative int.
+            this.length = Math.abs(length);
+        }
+    }
+
+    /**
+     * Mutator for var x.
+     */
+    public void setX(int x) {
+        /* boolean success = false;
+        while (!success) {
+            try {
+                x = JOptionPane.showConfirmDialog(null, "X coordinate");
+            } catch (Exception e) {
+                System.out.println("Please enter a valid input");
+            }
+        } */
+    }
+
+    /**
+     * Mutator for the var y.
+     */
+    public void setY(int y) {
+        /* boolean success = false;
+        while (!success) {
+            try {
+                y = JOptionPane.showConfirmDialog(null, "Y coordinate");
+            } catch (Exception e) {
+                System.out.println("Please enter a valid input");
+            }
+        } */
+    }
+
+    /**
+     * Accessor for the var width
+     */
+    public int getWidth() {
+        return this.width;
+    }
+
+    /**
+     * Accessor for the var length
+     */
+    public int getLength() {
+        return this.length;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
     }
 
 }
