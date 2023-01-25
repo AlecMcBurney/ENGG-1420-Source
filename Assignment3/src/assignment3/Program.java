@@ -20,22 +20,27 @@ public class Program {
         
         //Initialize and declare the object re's attributes to preset values.
         Rect re = new Rect(0,1,4,6);
+        Rect other = new Rect(14, 3);
         
         // Calculate the perimeter of the inputted rectangle.
-        System.out.println("Perimeter: " + re.getPerimeter());
+        re.getPerimeter();
+        //System.out.println("Perimeter: " + re.getPerimeter());
 
         // Get the area of the inputted rectangle.
-        System.out.println("Area: " + re.getArea());
+        re.getArea();
+        // System.out.println("Area: " + re.getArea());
         
         // Move the coordinate of the top left corner of the rectangle.
         re.move(2, 4);
         
         // Change the length and width of the rectangle to the value of n.
         re.changeSize(14);
-        System.out.println("Length and width: " + re.getLength() + ", " + re.getWidth());
+        // System.out.println("Length and width: " + re.getLength() + ", " + re.getWidth());
         
         // Print of information about the rectangle.
         re.print();
+        
+        System.out.println("The statement your rectangle is bigger than mine is " + re.isBiggerThan(other.getArea()) + ".");
     }
 
 }
