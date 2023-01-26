@@ -154,7 +154,7 @@ public class Rect {
     final public void setWidth(int width) {
         // Check for 0 value and change to 1.
         if (width == 0) {
-            width = 1;
+            this.width = 1;
         } else {
             // Make sure final value is a positive int incase a negative int.
             this.width = Math.abs(width);
@@ -174,13 +174,13 @@ public class Rect {
                 widthS = JOptionPane.showInputDialog(null, "Enter width:");
                 width = Integer.parseInt(widthS);
                 success = true;
-            } catch (Exception e) {
+            } catch (HeadlessException | NumberFormatException e) {
                 System.out.println("Please enter a valid input.");
             }
         }
         // Check for 0 value and change to 1.
         if (width == 0) {
-            width = 1;
+            this.width = 1;
         } else {
             // Make sure final value is a positive int incase a negative int.
             this.width = Math.abs(width);
@@ -195,7 +195,7 @@ public class Rect {
     final public void setLength(int length) {
         // Check for 0 value and change to 1.
         if (length == 0) {
-            length = 1;
+            this.length = 1;
         } else {
             //Make sure final value is a positive int incase a negative int.
             this.length = Math.abs(length);
@@ -215,17 +215,18 @@ public class Rect {
                 lengthS = JOptionPane.showInputDialog(null, "Enter length:");
                 length = Integer.parseInt(lengthS);
                 success = true;
-            } catch (Exception e) {
+            } catch (HeadlessException | NumberFormatException e) {
                 System.out.println("Please enter a valid input");
             }
         }
         // Check for 0 value and change to 1.
         if ( length == 0) {
-            length = 1;
+            this.length = 1;
         } else {
             //Make sure final value is a positive int incase a negative int.
             this.length = Math.abs(length);
         }
+        
     }
     
     /**
