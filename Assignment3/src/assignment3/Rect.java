@@ -34,10 +34,8 @@
  */
 package assignment3;
 
-import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
-import javafx.geometry.Side;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
-import sun.net.www.content.audio.x_aiff;
 
 /**
  *
@@ -81,18 +79,22 @@ public class Rect {
 
     /**
      * A method which calculates and returns the perimeter of a rectangle.
+     * 
+     * @return perimeter
      */
     public int getPerimeter() {
-        this.perimeter = 2 * this.width + 2 * this.length;
-        return this.perimeter;
+        perimeter = 2 * this.width + 2 * this.length;
+        return perimeter;
     }
 
     /**
      * A method which calculates and returns the area of a rectangle.
+     * 
+     * @return area
      */
     public long getArea() {
-        this.area = this.width * this.length;
-        return this.area;
+        area = this.width * this.length;
+        return area;
     }
 
     /**
@@ -132,6 +134,9 @@ public class Rect {
      * with the current rectangle. If the area of the current object is larger
      * than the area of the parameter object, return true and otherwise return
      * false.
+     * 
+     * @param otherArea
+     * @return bigger
      */
     public boolean isBiggerThan(long otherArea) {
         boolean bigger = false;
@@ -143,8 +148,10 @@ public class Rect {
 
     /**
      * Mutator for the var width.
+     * 
+     * @param width
      */
-    public void setWidth(int width) {
+    final public void setWidth(int width) {
         // Check for 0 value and change to 1.
         if (width == 0) {
             width = 1;
@@ -182,8 +189,10 @@ public class Rect {
 
     /**
      * Mutator for the var length.
+     * 
+     * @param length
      */
-    public void setLength(int length) {
+    final public void setLength(int length) {
         // Check for 0 value and change to 1.
         if (length == 0) {
             length = 1;
@@ -219,11 +228,21 @@ public class Rect {
         }
     }
     
-    public void setX(int x){
+    /**
+     * Mutator for var x
+     * 
+     * @param x
+     */
+    final public void setX(int x){
         this.x = x;
     }
     
-    public void setY(int y){
+    /**
+     * Mutator for var y
+     * 
+     * @param y
+     */
+    final public void setY(int y){
         this.y = y;
     }
     
@@ -233,12 +252,13 @@ public class Rect {
     public void userSetX() {
         boolean success = false;
         String xString;
-        int x;
+        int localX;
         while (!success) {
             try {
                 xString = JOptionPane.showInputDialog(null, "X coordinate");
-                x = Integer.parseInt(xString);
-            } catch (Exception e) {
+                localX = Integer.parseInt(xString);
+                x = localX;
+            } catch (HeadlessException | NumberFormatException e) {
                 System.out.println("Please enter a valid input");
             }
         }
@@ -255,7 +275,8 @@ public class Rect {
             try {
                 yString = JOptionPane.showInputDialog(null, "Y coordinate");
                 y = Integer.parseInt(yString);
-            } catch (Exception e) {
+                this.y = y;
+            } catch (HeadlessException | NumberFormatException e) {
                 System.out.println("Please enter a valid input");
             }
         }
@@ -263,24 +284,38 @@ public class Rect {
 
     /**
      * Accessor for the var width
+     * 
+     * @return width
      */
     public int getWidth() {
-        return this.width;
+        return width;
     }
 
     /**
      * Accessor for the var length
+     * 
+     * @return length
      */
     public int getLength() {
-        return this.length;
+        return length;
     }
-
+    
+    /**
+     * Accessor for the var length
+     * 
+     * @return x
+     */
     public int getX() {
-        return this.x;
+        return x;
     }
-
+    
+    /**
+     * Accessor for the var length
+     * 
+     * @return y
+     */
     public int getY() {
-        return this.y;
+        return y;
     }
 
     /**
