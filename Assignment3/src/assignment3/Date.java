@@ -1,7 +1,7 @@
 /**
  * Mackenzie Alec McBurney
  * 2023/02/01
- * Assignment 3 part
+ * Assignment 3 part 3
  * Implement a Date class for the concept of date. Each date object contains year, month and day.
  * Further, each date object must have the following methods:
  *  a. print, that prints the value of the date in the output.
@@ -31,14 +31,13 @@ public class Date {
         this.year = year;
         this.month = month;
         this.day = day;
-
     }
 
     /**
      * A method that prints the value of the date in the output.
      */
     public void print() {
-        System.out.println("The date is" + this.year + "/" + this.month + "/" + this.day);
+        System.out.println("The date is " + this.year + "/" + this.month + "/" + this.day);
     }
 
     /**
@@ -46,14 +45,13 @@ public class Date {
      * date.
      *
      * @param n
-     * @param date
      */
-    public void addDays(int n, int date[]) {
+    public void addDays(int n) {
         // Increment the day in a controlled manor.
         for (int i = 0; i < n; i++) {
             this.day++;
             // Check if the days flow over into the next month
-            if (this.day > daysPerMonth[this.month]) {
+            if (this.day > daysPerMonth[this.month-1]) {
                 this.day = 1;
                 this.month++;
             }
@@ -75,8 +73,8 @@ public class Date {
     public int compare(Date newDate) {
         int days1 = 0;
         int days2 = 0;
-        int dayDiff = 0;
-        days1 += this.year * 365 + monthsToDays(this.month) + this.day;
+        int dayDiff;
+        days1 += this.year * 365 + monthsToDays(this.month - 1) + this.day;
         days2 += newDate.year * 365 + monthsToDays(newDate.month) + newDate.day;
         dayDiff = Math.abs(days1 - days2);
         return dayDiff;
@@ -86,7 +84,7 @@ public class Date {
      * A method that determines the number of days in a number of months.
      *
      * @param month
-     * @return
+     * @return totalDays
      */
     private int monthsToDays(int month) {
         int totalDays = 0;
