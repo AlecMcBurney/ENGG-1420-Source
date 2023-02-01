@@ -17,66 +17,115 @@ package assignment3;
  */
 public class Date {
 
-    int year, month, day, date[];
+    private int year, month, day, newYear, newMonth, newDay;
 
-    void print(int date[]) {
-        System.out.println(date[0] + "/" + date[1] + "/" + date[2]);
+    public Date(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
-    int[] addDays(int add, int date[]) {
-        date[2] += add;
+    public void addDays(int add, int date[]) {
+        this.day += add;
+        while (this.day > 28) {
 
-        //Checks if entered the month has 31 days.
-        if (date[1] == 1 // January.
-                || date[1] == 3 // March
-                || date[1] == 5 // May
-                || date[1] == 7 // July
-                || date[1] == 8 // August
-                || date[1] == 10 // October
-                || date[1] == 12) { // December
-            if (date[2] > 31) {
-                while (date[2] > 31) {
-                    date[1] += 1;
-                    date[2] = date[2] - 31;
+            //Checks if entered the month has 31 days.
+            if (this.month == 1 // January.
+                    || this.month == 3 // March
+                    || this.month == 5 // May
+                    || this.month == 7 // July
+                    || this.month == 8 // August
+                    || this.month == 10 // October
+                    || this.month == 12) { // December
+                if(this.day > 31){
+                    this.month++;
+                    this.day -= 31;
+                } 
+                else break;
+            } // Checks if the entered month has 30 days.
+            else if (this.month == 4
+                    || this.month == 6
+                    || this.month == 9
+                    || this.month == 11) {
+                if(this.day > 30){
+                    this.month++;
+                    this.day -= 30;
                 }
-            }
-        } // Checks if the entered month has 30 days.
-        else if (date[1] == 4
-                || date[1] == 6
-                || date[1] == 9
-                || date[1] == 11) {
-            if (date[2] > 30) {
-                while (date[2] > 30) {
-                    date[1] += 1;
-                    date[2] = date[2] - 30;
+                else break;
+            } // Checks if the entered month has 28 days.
+            else if (this.month == 2) {
+                if(this.day > 28){
+                    this.month++;
+                    this.day -= 28;
                 }
+                else break;
+            } else {
+                System.out.println("Error: that is not a correct month number.");
             }
-        } // Checks if the entered month has 28 days.
-        else if (date[1] == 2) {
-            if (date[2] > 28) {
-                while (date[2] > 28) {
-                    date[1] += 1;
-                    date[2] = date[2] - 28;
-                }
+            if (this.month > 12) {
+                year++;
+                this.month = 1;
             }
-        } else {
-            System.out.println("Error: that is not a correct month number.");
         }
-        if (date[1] > 12) {
-            date[0]++;
-            date[1] = 1;
-            date[2] = 1;
-        }
-        return date;
     }
 
     Date compare() {
+        int days1, days2;
 
     }
-}
 
-public static void main(String args) {
+    /**
+     * A mutator for the var year
+     *
+     * @param year
+     */
+    public void setYear(int year) {
+        this.year = year;
+    }
 
+    /**
+     * A mutator for the var month
+     *
+     * @param month
+     */
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    /**
+     * A mutator for the var day
+     *
+     * @param day
+     */
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    /**
+     * An accessor for the var year
+     *
+     * @return year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * An accessor for the var month
+     *
+     * @return month
+     */
+    public int getMonth() {
+        return month;
+    }
+
+    /**
+     * An accessor for the var month
+     *
+     * @return day
+     */
+    public int getDay() {
+        return day;
     }
 
 }
