@@ -162,32 +162,6 @@ public class Rect {
     }
 
     /**
-     * A mutator that prompts the user to chose var width.
-     */
-    public void userSetWidth() {
-        boolean success = false;
-        String widthS;
-        int width = 0;
-        while (!success) {
-            try {
-                // Prompt user for a width value.
-                widthS = JOptionPane.showInputDialog(null, "Enter width:");
-                width = Integer.parseInt(widthS);
-                success = true;
-            } catch (HeadlessException | NumberFormatException e) {
-                System.out.println("Please enter a valid input.");
-            }
-        }
-        // Check for 0 value and change to 1.
-        if (width == 0) {
-            this.width = 1;
-        } else {
-            // Make sure final value is a positive int incase a negative int.
-            this.width = Math.abs(width);
-        }
-    }
-
-    /**
      * Mutator for the var length.
      * 
      * @param length
@@ -200,33 +174,6 @@ public class Rect {
             //Make sure final value is a positive int incase a negative int.
             this.length = Math.abs(length);
         }
-    }
-
-    /**
-     * A mutator that prompts the user to chose var length.
-     */
-    public void userSetLength() {
-        boolean success = false;
-        String lengthS;
-        int length = 0;
-        while (!success) {
-            try {
-                // Prompt user for a length value.
-                lengthS = JOptionPane.showInputDialog(null, "Enter length:");
-                length = Integer.parseInt(lengthS);
-                success = true;
-            } catch (HeadlessException | NumberFormatException e) {
-                System.out.println("Please enter a valid input");
-            }
-        }
-        // Check for 0 value and change to 1.
-        if ( length == 0) {
-            this.length = 1;
-        } else {
-            //Make sure final value is a positive int incase a negative int.
-            this.length = Math.abs(length);
-        }
-        
     }
     
     /**
@@ -245,42 +192,6 @@ public class Rect {
      */
     final public void setY(int y){
         this.y = y;
-    }
-    
-    /**
-     * A mutator that prompts the user to chose var x.
-     */
-    public void userSetX() {
-        boolean success = false;
-        String xString;
-        int localX;
-        while (!success) {
-            try {
-                xString = JOptionPane.showInputDialog(null, "X coordinate");
-                localX = Integer.parseInt(xString);
-                x = localX;
-            } catch (HeadlessException | NumberFormatException e) {
-                System.out.println("Please enter a valid input");
-            }
-        }
-    }
-
-    /**
-     * A mutator that prompts the user to chose var y.
-     */
-    public void userSetY() {
-        boolean success = false;
-        String yString;
-        int y;
-        while (!success) {
-            try {
-                yString = JOptionPane.showInputDialog(null, "Y coordinate");
-                y = Integer.parseInt(yString);
-                this.y = y;
-            } catch (HeadlessException | NumberFormatException e) {
-                System.out.println("Please enter a valid input");
-            }
-        }
     }
 
     /**
@@ -302,7 +213,7 @@ public class Rect {
     }
     
     /**
-     * Accessor for the var length
+     * Accessor for the var x
      * 
      * @return x
      */
@@ -311,19 +222,12 @@ public class Rect {
     }
     
     /**
-     * Accessor for the var length
+     * Accessor for the var y
      * 
      * @return y
      */
     public int getY() {
         return y;
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-
     }
 
 }
