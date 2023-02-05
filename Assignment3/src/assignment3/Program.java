@@ -7,15 +7,16 @@
  */
 package assignment3;
 
-import java.awt.geom.Arc2D;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author kyure
  */
 public class Program {
-
+    /**
+     * A program that creates 2 instances of the rect class and uses methods from
+     * that class.
+     * @param args 
+     */
     public static void main(String[] args) {
         
         //Initialize and declare the object re's attributes to preset values.
