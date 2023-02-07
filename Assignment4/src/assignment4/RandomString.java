@@ -1,6 +1,7 @@
 /*
  * Mackenzie Alec McBurney
  * 2023/02/07
+ * Assignment 4 Part 2
  * 
  * Implement a RandomString class that has a method called nextString that takes a parameter n of type int
  * and returns a random string of length n characters. The random string can only contain lowercase and
