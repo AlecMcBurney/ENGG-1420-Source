@@ -107,6 +107,8 @@ public class RandomString {
         return num;
     }
     
+    
+    
     /**
      * Main method of the RandomString class that receives the output of the 
      * nextString method.
