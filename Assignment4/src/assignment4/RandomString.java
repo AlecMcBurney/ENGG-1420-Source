@@ -16,14 +16,15 @@ import javax.swing.JOptionPane;
 /**
  * A class that is similar to an addition to the java.util.Random package.
  * Contains a method that returns a random string.
+ *
  * @author kyure
  */
 public class RandomString {
-    
+
     /**
-     * A method that returns a random string of length n.
-     * Cannot start with a number.
-     * 
+     * A method that returns a random string of length n. Cannot start with a
+     * number.
+     *
      * @param n
      * @return randStr
      */
@@ -47,10 +48,10 @@ public class RandomString {
         }
         return randStr;
     }
-    
+
     /**
      * A method that randomly decides if a letter is upper case or lower case.
-     * 
+     *
      * @return capital
      */
     private boolean lowerOrUpperCase() {
@@ -59,11 +60,11 @@ public class RandomString {
         capital = bool.nextBoolean();
         return capital;
     }
-    
+
     /**
-     * A method that randomly determine if an ASCII value will be of a letter 
-     * or number
-     * 
+     * A method that randomly determine if an ASCII value will be of a letter or
+     * number
+     *
      * @param index
      * @return type
      * @return false
@@ -78,11 +79,11 @@ public class RandomString {
             return type;
         }
     }
-    
+
     /**
      * A method that randomly calculates an ASCII value for upper and lower case
      * letters.
-     * 
+     *
      * @param num
      * @param bool
      * @return num
@@ -95,10 +96,10 @@ public class RandomString {
         }
         return num;
     }
-    
+
     /**
      * A method that calculates an ASCII value for numbers 0-9.
-     * 
+     *
      * @param num
      * @return num
      */
@@ -106,14 +107,12 @@ public class RandomString {
         num += 48;
         return num;
     }
-    
-    
-    
+
     /**
-     * Main method of the RandomString class that receives the output of the 
+     * Main method of the RandomString class that receives the output of the
      * nextString method.
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
         RandomString test = new RandomString();
