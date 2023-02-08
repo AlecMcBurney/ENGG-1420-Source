@@ -73,7 +73,7 @@ public class Book {
             int j = 0;
             if (title.charAt(i) == check.charAt(j)) {
                 similarity = 0;
-                while (title.charAt(i) == check.charAt(j) && j < checkLen && i < titleLen) {
+                while (j < checkLen && i < titleLen && title.charAt(i) == check.charAt(j)) {
                     similarity++;
                     i++;
                     j++;
@@ -90,7 +90,18 @@ public class Book {
     }
 
     public void printAuthors() {
+        int authorLen = author.length();
+        char tab = 10;
+        for (int i = 0; i < authorLen; i++) {
+            if (author.charAt(i) == ',') {
+                System.out.print(tab);
+            } else if (author.charAt(i) == ' ') {
+            } else {
+                System.out.print(author.charAt(i));
 
+            }
+
+        }
     }
 
     private char capitalize(char changeCase) {
@@ -142,8 +153,9 @@ public class Book {
     }
 
     public static void main(String[] args) {
-        Book death = new Book("Harry Potter and the Philosipher's Stone", "J.K. Rowling", 320, 1999, (float) 0.2);
+        Book death = new Book("Harry Potter and the Philosipher's Stone", "Paul Dietel, Harvey Dietel", 320, 1999, (float) 0.2);
         System.out.println(death.getTitleInTitleCase());
-        System.out.println(death.contains("and"));
+        System.out.println(death.contains("Philosipher"));
+        death.printAuthors();
     }
 }
