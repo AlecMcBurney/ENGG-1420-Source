@@ -47,7 +47,12 @@ public class Book {
         this.pubDate = pubDate;
         this.price = price;
     }
-
+    
+    /**
+     * A method that returns the title in title case.
+     *
+     * return titleCase
+     */
     public String getTitleInTitleCase() {
         int len = title.length();
         String titleCase = new String();
@@ -63,7 +68,13 @@ public class Book {
         }
         return titleCase;
     }
-
+    
+    /**
+     * A method that checks if a given string is found within the title.
+     * 
+     * @param check
+     * @return found
+     */
     public boolean contains(String check) {
         boolean found = false;
         int titleLen = title.length();
@@ -88,7 +99,10 @@ public class Book {
         }
         return found;
     }
-
+    
+    /**
+     * A method that prints off the authors of a book. One author per line.
+     */
     public void printAuthors() {
         int authorLen = author.length();
         char tab = 10;
@@ -103,7 +117,12 @@ public class Book {
 
         }
     }
-
+    
+    /**
+     * 
+     * @param changeCase
+     * @return changeCase
+     */
     private char capitalize(char changeCase) {
         if (changeCase < 123 && changeCase > 96) {
             changeCase -= 32;
@@ -152,10 +171,5 @@ public class Book {
         this.price = price;
     }
 
-    public static void main(String[] args) {
-        Book death = new Book("Harry Potter and the Philosipher's Stone", "Paul Dietel, Harvey Dietel", 320, 1999, (float) 0.2);
-        System.out.println(death.getTitleInTitleCase());
-        System.out.println(death.contains("Philosipher"));
-        death.printAuthors();
-    }
+    
 }
