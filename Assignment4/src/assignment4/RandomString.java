@@ -29,21 +29,34 @@ public class RandomString {
      * @return randStr
      */
     public String nextString(int n) {
+        /*
+        The randomly generated string.
+        A variable to be used to generate a random number.
+        An ASCII value for any accepted char for the string.
+        The char being added to the string.
+        Whether the method will generate a char or an int.
+        */
         String randStr = new String();
         Random number = new Random();
         int num;
         char nextChar;
         boolean charType;
-
+        
+        // Add a new char or int to the string n times.
         for (int i = 1; i <= n; i++) {
+            // Call the charType method to determine what data type to generate.
             charType = charType(i);
             if (charType == false) {
+                // Generate an ASCII value for either an upper or lowercase letter.
                 num = letterAscii((int) number.nextInt(26), lowerOrUpperCase());
             } else {
+                // Generate an ASCII value for a single digit number.
                 num = numberAscii((int) number.nextInt(10));
             }
+            // Convert the ASCII value into either a character.
             nextChar = (char) num;
             String str = String.valueOf(nextChar);
+            // Concatonate the generated value to the string
             randStr = randStr.concat(str);
         }
         return randStr;
@@ -56,7 +69,7 @@ public class RandomString {
      */
     private boolean lowerOrUpperCase() {
         Random bool = new Random();
-        boolean capital;
+        boolean capital; // True for Uppercase False for lowercase
         capital = bool.nextBoolean();
         return capital;
     }
@@ -71,7 +84,7 @@ public class RandomString {
      */
     private boolean charType(int index) {
         Random bool = new Random();
-        boolean type;
+        boolean type; // Generate false for a char or true for an int.
         if (index == 1) {
             return false; // Doesn't allow int for first char.
         } else {
@@ -90,9 +103,9 @@ public class RandomString {
      */
     private int letterAscii(int num, boolean bool) {
         if (bool == true) {
-            num += 65;
+            num += 65; // Convert ASCII to uppercase letter.
         } else {
-            num += 97;
+            num += 97; // Convert ASCII to lowercase letter.
         }
         return num;
     }
@@ -104,7 +117,7 @@ public class RandomString {
      * @return num
      */
     private int numberAscii(int num) {
-        num += 48;
+        num += 48; // Convert ASCII to single digit number.
         return num;
     }
 
