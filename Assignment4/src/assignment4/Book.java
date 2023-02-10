@@ -19,18 +19,18 @@
 package assignment4;
 
 /**
- *
+ * A class for the concept of a book.
  * @author kyure
  */
 public class Book {
 
-    // title, author name, number of pages, year of publication and price
+    // title, author names, number of pages, year of publication and price
     private String title;
     private String author;
     private int pages;
     private int pubDate;
     private float price;
-
+    
     /**
      * Constructor for the Book class.
      *
@@ -54,17 +54,22 @@ public class Book {
      * return titleCase
      */
     public String getTitleInTitleCase() {
+        /*
+        How long a for loop should loop.
+        The title but with title case.
+        The letter that is being added to the string.
+        */
         int len = title.length();
         String titleCase = new String();
         char letter;
         for (int i = 0; i < len; i++) {
             letter = title.charAt(i);
-            if (i == 0
-                    || title.charAt(i - 1) == 32) {
-                letter = capitalize(letter);
+            if (i == 0 // First letter of the title, Assumes the title doesn't start with a non char.
+                    || title.charAt(i - 1) == 32) { // First char after a space. Also assuems a char.
+                letter = capitalize(letter); // Calls capitalize method.
             }
-            String str = String.valueOf(letter);
-            titleCase = titleCase.concat(str);
+            String str = String.valueOf(letter); // Convert the char to a string to be concatonated
+            titleCase = titleCase.concat(str); // Add the letter to the string.
         }
         return titleCase;
     }
@@ -119,13 +124,14 @@ public class Book {
     }
     
     /**
+     * A method that capitalizes letters.
      * 
      * @param changeCase
      * @return changeCase
      */
     private char capitalize(char changeCase) {
-        if (changeCase < 123 && changeCase > 96) {
-            changeCase -= 32;
+        if (changeCase < 123 && changeCase > 96) { // Check if the ASCII value is of a lower case letter.
+            changeCase -= 32; // Change the ASCII value to that of an upper case letter.
         }
         return changeCase;
     }
