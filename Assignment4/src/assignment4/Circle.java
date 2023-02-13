@@ -71,7 +71,7 @@ public class Circle {
      * @return this.r
      */
     public int addAll(Circle[] circles) {
-        int i = 0;
+        // Cycles through the array of Circles and adds the radii to the current Circle.
         for (Circle circle : circles) {
             this.r += circle.r;
         }
@@ -79,26 +79,33 @@ public class Circle {
     }
 
     public Circle[] decompose() {
+
+        /*
+        Initialize an array list to store the radius values.
+        A copy of the current radius.
+         */
         ArrayList<Integer> factors = new ArrayList<>();
-        // Circle[] decomposed;
         int r = this.r;
+        // Cycle through every possible factor.
         while (r > 1) {
-            // System.out.println("huh.");
             int i = 2;
             while (i > 0) {
                 if (r % i == 0) {
-                    r = r / i;
+                    // factor out the radius to keep checking for other radii.
+                    r /= i;
                     break;
                 }
                 i++;
             }
             factors.add(i);
         }
-        Circle decomposed[] = new Circle[factors.size()];
+        // Initialize the array of Circle objects to be returned.
+        Circle[] decomposed = new Circle[factors.size()];
+
         for (int i = 0; i < decomposed.length; i++) {
+            // Add a Circle object with one of the calculated radii.
             decomposed[i] = new Circle(factors.get(i));
         }
-
         return decomposed;
     }
 }
