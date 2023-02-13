@@ -54,4 +54,3 @@ public class BookProgram {
         hardCover.printAuthors();
     }
 }
-// alec_mcburney@gmail.com carl@gmail.com;harold@outlook.com
