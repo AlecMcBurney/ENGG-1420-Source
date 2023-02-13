@@ -1,7 +1,7 @@
 /*
  * Mackenzie Alec McBurney
  * 2023/02/05
- * Assignment 3 Part 1
+ * Assignment 4 Part 1
  *
  * Implement a program that takes a string from input and returns it in summary
  * form. That is, if it has several identical consecutive characters, write one
