@@ -48,7 +48,6 @@ public class Emails {
 
     public static int gmails(String emails) {
         int num = 0;
-        boolean found = false;
         String check = "gmail";
         int emailsLen = emails.length();
         int similarity;
