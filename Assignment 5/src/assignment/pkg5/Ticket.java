@@ -40,6 +40,7 @@ follows:
         • discount method: Define the method that if a person buys more than 5 tickets, a
         2% discount is included in his ticket and 1% is added for every 5 additional
         people, for example, if someone buys 14 tickets, he will be given a 3% discount.
+        test.
  */
 package assignment.pkg5;
 
@@ -48,11 +49,11 @@ package assignment.pkg5;
  * @author kyure
  */
 public class Ticket {
-    
+
     static private int count;
     static private int price;
     static private int capacity;
-    
+
     private String marker;
     private String name;
     private String lastName;
@@ -60,9 +61,8 @@ public class Ticket {
     private String source;
     private String destination;
     private String depTime;
-    
-    
-    public Ticket(String name, String lastName, String natCode, String source, String destination, String depTime, int price){
+
+    public Ticket(String name, String lastName, String natCode, String source, String destination, String depTime, int price) {
         count++;
         setName(name);
         setLastName(lastName);
@@ -128,21 +128,27 @@ public class Ticket {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void print() {
+        System.out.println(count);
+        for (int i = 0; i < count; i++){
+            System.out.println("Ticket #: " + i);
+            System.out.println("Passenger name: " + name + " " + lastName);
+            System.out.println("National code: " + natCode);
+            System.out.println("From: " + source);
+            System.out.println("To: " + destination);
+            System.out.println("Departure time: " + depTime);
+            System.out.println("Marker: " + marker);
+        }
     }
 
-    
-    public void print(){
+    public void add() {
         
     }
-    
-    public void add(){
-        
+
+    public void marker() {
+
     }
     
-    public void marker(){
-        
-    }
     
+
 }
