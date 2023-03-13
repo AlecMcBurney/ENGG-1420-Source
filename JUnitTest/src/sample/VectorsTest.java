@@ -1,3 +1,7 @@
+/*
+Create Java Class Library project.
+Needed to add JUnit library under properties first.
+*/
 package sample;
 
 import org.junit.AfterClass;
