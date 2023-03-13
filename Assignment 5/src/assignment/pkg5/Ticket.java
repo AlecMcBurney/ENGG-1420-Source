@@ -40,7 +40,7 @@ follows:
         • discount method: Define the method that if a person buys more than 5 tickets, a
         2% discount is included in his ticket and 1% is added for every 5 additional
         people, for example, if someone buys 14 tickets, he will be given a 3% discount.
-        test.
+        test
  */
 package assignment.pkg5;
 
