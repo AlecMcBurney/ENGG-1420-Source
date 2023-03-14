@@ -48,55 +48,64 @@ package assignment.pkg5;
  *
  * @author kyure
  */
+
 public class Ticket {
 
     static private int count;
     static private int price;
-    static private int capacity;
-
-    private String marker;
-    private String name;
-    private String lastName;
-    private String natCode;
+    final private int capacity[] = {400,150,60,25}; // train, plane, bus1, bus2
+    
+    private String[] marker;
+    private String[] name;
+    private String[] lastName;
+    private String[] natCode;
     private String source;
     private String destination;
     private String depTime;
-
-    public Ticket(String name, String lastName, String natCode, String source, String destination, String depTime, int price) {
-        count++;
-        setName(name);
-        setLastName(lastName);
-        setNatCode(natCode);
-        setSource(source);
-        setDestination(destination);
-        setDepTime(depTime);
-    }
+    private String vehicle;
+    private String localCount;
 
     public static int getCount() {
         return count;
     }
 
-    public String getName() {
+    public static int getPrice() {
+        return price;
+    }
+
+    public int[] getCapacity() {
+        return capacity;
+    }
+
+    public String[] getMarker() {
+        return marker;
+    }
+
+    public void setMarker(String[] marker) {
+        this.marker = marker;
+    }
+
+    public String[] getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String[] name) {
         this.name = name;
     }
 
-    public String getLastName() {
+    public String[] getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String[] lastName) {
         this.lastName = lastName;
     }
 
-    public String getNatCode() {
+    public String[] getNatCode() {
         return natCode;
     }
 
-    public void setNatCode(String natCode) {
+    public void setNatCode(String[] natCode) {
         this.natCode = natCode;
     }
 
@@ -124,12 +133,26 @@ public class Ticket {
         this.depTime = depTime;
     }
 
-    public int getPrice() {
-        return price;
+    public String getVehicle() {
+        return vehicle;
     }
 
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public String getLocalCount() {
+        return localCount;
+    }
+
+    public void setLocalCount(String localCount) {
+        this.localCount = localCount;
+    }
+
+    
+
     public void print() {
-        System.out.println(count);
+        System.out.println(localCount);
         for (int i = 0; i < count; i++){
             System.out.println("Ticket #: " + i);
             System.out.println("Passenger name: " + name + " " + lastName);
