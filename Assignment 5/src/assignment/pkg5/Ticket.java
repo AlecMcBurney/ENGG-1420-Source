@@ -44,31 +44,47 @@ follows:
  */
 package assignment.pkg5;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 /**
  *
  * @author kyure
  */
 
-public class Ticket {
+public abstract class Ticket {
 
     static private int count;
-    static private int price;
+    final static private int price = 1;
     final private int capacity[] = {400,150,60,25}; // train, plane, bus1, bus2
     
-    private String[] marker;
-    private String[] name;
-    private String[] lastName;
-    private String[] natCode;
+    private ArrayList<String> marker = new ArrayList<>();
+    private ArrayList<String> name = new ArrayList<>();
+    private ArrayList<String> lastName = new ArrayList<>();
+    private ArrayList<String> natCode = new ArrayList<>();
+    
     private String source;
     private String destination;
     private String depTime;
     private String vehicle;
-    private String localCount;
+    private int localCount;
+    private ArrayList<Float> indivPrice = new ArrayList<>();
+    
+    public Ticket(String source, String destination, String depTime){
+        this.setSource(source);
+        this.setDestination(destination);
+        this.setDepTime(depTime);
+    }
 
     public static int getCount() {
         return count;
     }
 
+    public static void setCount(int inc) {
+        Ticket.count += inc;
+    }
+    
     public static int getPrice() {
         return price;
     }
@@ -77,36 +93,36 @@ public class Ticket {
         return capacity;
     }
 
-    public String[] getMarker() {
-        return marker;
+    public String getMarker(int ticket) {
+        return marker.get(ticket);
     }
 
-    public void setMarker(String[] marker) {
-        this.marker = marker;
+    public void setMarker(String marker, int ticket) {
+        this.marker.add(marker);
     }
 
-    public String[] getName() {
-        return name;
+    public String getName(int ticket) {
+        return name.get(ticket);
     }
 
-    public void setName(String[] name) {
-        this.name = name;
+    public void setName(String name, int ticket) {
+        this.name.add(name);
     }
 
-    public String[] getLastName() {
-        return lastName;
+    public String getLastName(int ticket) {
+        return lastName.get(ticket);
     }
 
-    public void setLastName(String[] lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastName, int ticket) {
+        this.lastName.get(ticket);
     }
 
-    public String[] getNatCode() {
-        return natCode;
+    public String getNatCode(int ticket) {
+        return natCode.get(ticket);
     }
 
-    public void setNatCode(String[] natCode) {
-        this.natCode = natCode;
+    public void setNatCode(String natCode, int ticket) {
+        this.natCode.add(natCode);
     }
 
     public String getSource() {
@@ -141,37 +157,60 @@ public class Ticket {
         this.vehicle = vehicle;
     }
 
-    public String getLocalCount() {
-        return localCount;
-    }
-
-    public void setLocalCount(String localCount) {
-        this.localCount = localCount;
-    }
-
-    
-
     public void print() {
         System.out.println(localCount);
         for (int i = 0; i < count; i++){
-            System.out.println("Ticket #: " + i);
-            System.out.println("Passenger name: " + name + " " + lastName);
-            System.out.println("National code: " + natCode);
+            System.out.println("Ticket #: " + localCount);
+            System.out.println("Passenger name: " + getName(i) + " " + getLastName(i));
+            System.out.println("National code: " + getNatCode(i));
             System.out.println("From: " + source);
             System.out.println("To: " + destination);
             System.out.println("Departure time: " + depTime);
-            System.out.println("Marker: " + marker);
+            System.out.println("Marker: " + getMarker(i));
         }
     }
 
-    public void add() {
+    public void add(Person passenger, int tickets) {
+        for(int i=0;i<tickets;i++){
+        setName(passenger.getFirstName(), localCount);
+        setLastName(passenger.getLastName(), localCount);
+        setNatCode(passenger.getNatCode(), localCount);
+        localCount++;
+        marker();
+        }
+        indivPrice.add(discount(tickets));
         
     }
-
+    
     public void marker() {
-
+        String markerString = new String();
+        markerString = markerString.concat(Integer.toString(localCount));
+        markerString = markerString.concat(getDate());
+        markerString = markerString.concat(vehicle);
+        setMarker(markerString, localCount);
     }
     
+    private String getDate(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");  
+        LocalDate now = LocalDate.now();
+        String date = now.format(dtf);
+        return date;
+    }
     
+    private float discount(int tickets){
+        int reduce;
+        float total;
+        if(tickets/5 > 0){
+            reduce = (tickets/5) +1 ;
+            float disPrice = getPrice()*(100-reduce)/100;
+            total = disPrice * tickets;
+            
+            return total;
+        }
+        else{
+            total = getPrice()*tickets;
+            return total;
+        }
+    }
 
 }
