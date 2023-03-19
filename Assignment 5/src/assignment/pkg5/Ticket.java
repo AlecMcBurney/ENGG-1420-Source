@@ -56,25 +56,31 @@ import java.util.ArrayList;
 public abstract class Ticket {
 
     static private int count;
-    final static private int price = 1;
-    final private int capacity[] = {400,150,60,25}; // train, plane, bus1, bus2
+    static private ArrayList<String> list = new ArrayList<>();
+    final static private int price = 1; // Price per ticket
+    final private int capacity[] = {60,25,400,150}; // Bus 1, Bus 2, train, plane, 
     
-    private ArrayList<String> marker = new ArrayList<>();
-    private ArrayList<String> name = new ArrayList<>();
-    private ArrayList<String> lastName = new ArrayList<>();
-    private ArrayList<String> natCode = new ArrayList<>();
     
-    private String source;
-    private String destination;
-    private String depTime;
-    private String vehicle;
-    private int localCount;
-    private ArrayList<Float> indivPrice = new ArrayList<>();
+    final private ArrayList<String> marker = new ArrayList<>(); // Special marker for ticket
+    final private ArrayList<String> name = new ArrayList<>(); // Name per ticket
+    final private ArrayList<String> lastName = new ArrayList<>(); // Last name per ticket
+    final private ArrayList<String> natCode = new ArrayList<>(); // National Code/SIN number
+    
+    private String source; // Departs from
+    private String destination; // End of trip
+    private String depTime; // Time of departure
+    private String vehicle; // Type of vehice
+    private int localCount; // Number of tickets local to vahicle type
+    final private ArrayList<Float> indivPrice = new ArrayList<>(); // Price per passenger(Sum of tickets per one name)
     
     public Ticket(String source, String destination, String depTime){
         this.setSource(source);
         this.setDestination(destination);
         this.setDepTime(depTime);
+    }
+    
+    public Ticket(String marker){
+        this.setMarker(marker, 0);
     }
 
     public static int getCount() {
@@ -114,7 +120,7 @@ public abstract class Ticket {
     }
 
     public void setLastName(String lastName, int ticket) {
-        this.lastName.get(ticket);
+        this.lastName.add(lastName);
     }
 
     public String getNatCode(int ticket) {
@@ -158,31 +164,38 @@ public abstract class Ticket {
     }
 
     public void print() {
-        System.out.println(localCount);
-        for (int i = 0; i < count; i++){
-            System.out.println("Ticket #: " + localCount);
+        System.out.println("Total " + vehicle + " Tickets: " + localCount);
+        System.out.println("----------------------------------------");
+        for (int i = 0; i < localCount; i++){
+            System.out.println("Ticket #: " + i);
             System.out.println("Passenger name: " + getName(i) + " " + getLastName(i));
             System.out.println("National code: " + getNatCode(i));
             System.out.println("From: " + source);
             System.out.println("To: " + destination);
             System.out.println("Departure time: " + depTime);
             System.out.println("Marker: " + getMarker(i));
+            System.out.println("----------------------------------------");
         }
     }
 
-    public void add(Person passenger, int tickets) {
+    public void add(Person passenger, int tickets, int transport) {
         for(int i=0;i<tickets;i++){
+            if(localCount >= capacity[transport]){
+                System.out.println("Sorry! There are no remaining seats for this ride. Please cancel and try another departure time.");
+                break;
+            }
         setName(passenger.getFirstName(), localCount);
         setLastName(passenger.getLastName(), localCount);
         setNatCode(passenger.getNatCode(), localCount);
         localCount++;
         marker();
+        list.add(this.getMarker(i));
         }
         indivPrice.add(discount(tickets));
         
     }
     
-    public void marker() {
+    private void marker() {
         String markerString = new String();
         markerString = markerString.concat(Integer.toString(localCount));
         markerString = markerString.concat(getDate());
@@ -202,6 +215,9 @@ public abstract class Ticket {
         float total;
         if(tickets/5 > 0){
             reduce = (tickets/5) +1 ;
+            if(reduce > 100){
+                reduce = 100;
+            }
             float disPrice = getPrice()*(100-reduce)/100;
             total = disPrice * tickets;
             
@@ -209,8 +225,8 @@ public abstract class Ticket {
         }
         else{
             total = getPrice()*tickets;
+            
             return total;
         }
     }
-
 }
