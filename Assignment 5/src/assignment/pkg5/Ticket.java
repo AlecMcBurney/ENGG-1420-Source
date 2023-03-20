@@ -52,35 +52,37 @@ import java.util.ArrayList;
  *
  * @author kyure
  */
-
 public abstract class Ticket {
 
     static private int count;
-    static private ArrayList<String> list = new ArrayList<>();
-    final static private int price = 1; // Price per ticket
-    final private int capacity[] = {60,25,400,150}; // Bus 1, Bus 2, train, plane, 
-    
-    
+    final static private float price = 1; // Price per ticket
+
     final private ArrayList<String> marker = new ArrayList<>(); // Special marker for ticket
     final private ArrayList<String> name = new ArrayList<>(); // Name per ticket
     final private ArrayList<String> lastName = new ArrayList<>(); // Last name per ticket
     final private ArrayList<String> natCode = new ArrayList<>(); // National Code/SIN number
-    
+
     private String source; // Departs from
     private String destination; // End of trip
     private String depTime; // Time of departure
     private String vehicle; // Type of vehice
-    private int localCount; // Number of tickets local to vahicle type
-    final private ArrayList<Float> indivPrice = new ArrayList<>(); // Price per passenger(Sum of tickets per one name)
-    
-    public Ticket(String source, String destination, String depTime){
+    private int localCount; // Number of tickets local to vahicle 
+    private int capacity;
+    final private ArrayList<String> indivPrice = new ArrayList<>(); // Price per passenger(Sum of tickets per one name)
+
+    public Ticket(String source, String destination, String depTime, int capacity) {
         this.setSource(source);
         this.setDestination(destination);
         this.setDepTime(depTime);
+        this.setCapacity(capacity);
     }
-    
-    public Ticket(String marker){
+
+    public Ticket(String marker) {
         this.setMarker(marker, 0);
+    }
+
+    public int getLocalCount() {
+        return localCount;
     }
 
     public static int getCount() {
@@ -90,13 +92,17 @@ public abstract class Ticket {
     public static void setCount(int inc) {
         Ticket.count += inc;
     }
-    
-    public static int getPrice() {
+
+    public static float getPrice() {
         return price;
     }
 
-    public int[] getCapacity() {
+    public int getCapacity() {
         return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getMarker(int ticket) {
@@ -165,9 +171,13 @@ public abstract class Ticket {
 
     public void print() {
         System.out.println("Total " + vehicle + " Tickets: " + localCount);
+        System.out.println("Price per passenger.");
+        for (String i : indivPrice) {
+            System.out.println(i);
+        }
         System.out.println("----------------------------------------");
-        for (int i = 0; i < localCount; i++){
-            System.out.println("Ticket #: " + i);
+        for (int i = 0; i < localCount; i++) {
+            System.out.println("Ticket #: " + i + 1);
             System.out.println("Passenger name: " + getName(i) + " " + getLastName(i));
             System.out.println("National code: " + getNatCode(i));
             System.out.println("From: " + source);
@@ -179,22 +189,27 @@ public abstract class Ticket {
     }
 
     public void add(Person passenger, int tickets, int transport) {
-        for(int i=0;i<tickets;i++){
-            if(localCount >= capacity[transport]){
-                System.out.println("Sorry! There are no remaining seats for this ride. Please cancel and try another departure time.");
+
+        for (int i = 0; i < tickets; i++) {
+            if (localCount + 1 >= this.getCapacity()) {
+                System.out.println("Sorry! There are no remaining seats for this ride. Please try another departure time or Vehicle.");
+                localCount--;
                 break;
             }
-        setName(passenger.getFirstName(), localCount);
-        setLastName(passenger.getLastName(), localCount);
-        setNatCode(passenger.getNatCode(), localCount);
-        localCount++;
-        marker();
-        list.add(this.getMarker(i));
+            setName(passenger.getFirstName(), localCount);
+            setLastName(passenger.getLastName(), localCount);
+            setNatCode(passenger.getNatCode(), localCount);
+            marker();
+            localCount++;
         }
-        indivPrice.add(discount(tickets));
-        
+        String fullName = new String();
+        fullName = fullName.concat(getName(localCount - 1));
+        fullName = fullName.concat(" ");
+        fullName = fullName.concat(getLastName(localCount - 1));
+        indivPrice.add(discount(tickets, fullName));
+
     }
-    
+
     private void marker() {
         String markerString = new String();
         markerString = markerString.concat(Integer.toString(localCount));
@@ -202,31 +217,33 @@ public abstract class Ticket {
         markerString = markerString.concat(vehicle);
         setMarker(markerString, localCount);
     }
-    
-    private String getDate(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");  
+
+    private String getDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
         LocalDate now = LocalDate.now();
         String date = now.format(dtf);
         return date;
     }
-    
-    private float discount(int tickets){
+
+    private String discount(int tickets, String fullName) {
         int reduce;
         float total;
-        if(tickets/5 > 0){
-            reduce = (tickets/5) +1 ;
-            if(reduce > 100){
+        String totalPrice;
+        if (tickets / 5 > 0) {
+            reduce = (tickets / 5) + 1;
+            if (reduce > 100) {
                 reduce = 100;
             }
-            float disPrice = getPrice()*(100-reduce)/100;
+            float disPrice = getPrice() * (1 - (reduce / 100));
             total = disPrice * tickets;
-            
-            return total;
-        }
-        else{
-            total = getPrice()*tickets;
-            
-            return total;
+            totalPrice = String.valueOf(total);
+            fullName = fullName.concat(": $" + totalPrice);
+            return fullName;
+        } else {
+            total = getPrice() * tickets;
+            totalPrice = String.valueOf(total);
+            fullName = fullName.concat(": $" + totalPrice);
+            return fullName;
         }
     }
 }
