@@ -12,6 +12,7 @@ public class PlaneTicket extends Ticket {
 
     public PlaneTicket(String source, String destination, String depTime) {
         super(source, destination, depTime, 150);
+        super.setVehicle("Plane");
     }
 
 }
