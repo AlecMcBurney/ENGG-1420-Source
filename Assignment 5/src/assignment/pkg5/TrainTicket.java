@@ -9,9 +9,10 @@ package assignment.pkg5;
  * @author kyure
  */
 public class TrainTicket extends Ticket{
-    
-    public TrainTicket(String name, String lastName, String natCode, String source, String destination, String depTime, int price) {
-        super(name, lastName, natCode, source, destination, depTime, price);
+
+    public TrainTicket(String source, String destination, String depTime) {
+        super(source, destination, depTime,400);
+        super.setVehicle("Train");
     }
-    
+
 }
