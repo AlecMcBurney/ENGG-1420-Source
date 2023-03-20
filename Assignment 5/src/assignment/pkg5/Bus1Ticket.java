@@ -4,14 +4,18 @@
  */
 package assignment.pkg5;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kyure
  */
-public class Bus1Ticket extends Ticket{
-    
-    public Bus1Ticket(String name, String lastName, String natCode, String source, String destination, String depTime, int price) {
-        super(name, lastName, natCode, source, destination, depTime, price);
+public class Bus1Ticket extends Ticket {
+
+    // Capacity[2]
+    public Bus1Ticket(String source, String destination, String depTime) {
+        super(source, destination, depTime, 60);
+        super.setVehicle("Bus");
     }
-    
+
 }
