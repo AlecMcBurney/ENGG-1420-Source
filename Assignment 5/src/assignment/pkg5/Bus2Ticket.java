@@ -8,10 +8,11 @@ package assignment.pkg5;
  *
  * @author kyure
  */
-public class Bus2Ticket extends Ticket{
-    
-    public Bus2Ticket(String name, String lastName, String natCode, String source, String destination, String depTime, int price) {
-        super(name, lastName, natCode, source, destination, depTime, price);
+public class Bus2Ticket extends Ticket {
+
+    public Bus2Ticket(String source, String destination, String depTime) {
+        super(source, destination, depTime, 25);
+        super.setVehicle("VIPBus");
     }
-    
+
 }
